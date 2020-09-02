@@ -62,3 +62,4 @@ macspoofer -s -w wlan0
 - **-c** ---> change mac address
 - **-w** ---> define device
 - **-m** ---> define new mac address(XX:XX:XX:XX:XX:XX or random)
+- **-r** ---> print a random mac address

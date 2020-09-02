@@ -13,8 +13,10 @@ import (
 	"golang.org/x/sys/unix"
 )
 
-var showBool, changeBool bool
-var netIface, macAddr string
+var (
+	showBool, changeBool, randomBool bool
+	netIface, macAddr                string
+)
 
 //mac addr struct
 type hwaddr struct {
@@ -26,6 +28,7 @@ type hwaddr struct {
 func init() {
 	flag.BoolVar(&showBool, "s", false, "print current mac address")
 	flag.BoolVar(&changeBool, "c", false, "change mac address")
+	flag.BoolVar(&randomBool, "r", false, "print a random mac address")
 
 	flag.StringVar(&netIface, "w", "", "insert device")
 	flag.StringVar(&macAddr, "m", "", "insert new mac address")
@@ -35,19 +38,25 @@ func main() {
 
 	flag.Parse()
 
-	if netIface == "" {
-		fmt.Println("[-]Please enter a device.")
-		os.Exit(1)
-	}
-
 	switch {
 
 	case showBool:
+
+		if netIface == "" {
+			fmt.Println("[-]Please enter a device.")
+			os.Exit(1)
+		}
+
 		wlan, err := net.InterfaceByName(netIface)
 		checkerr(err)
 		fmt.Println(wlan.HardwareAddr)
 
 	case changeBool:
+
+		if netIface == "" {
+			fmt.Println("[-]Please enter a device.")
+			os.Exit(1)
+		}
 
 		wlan, err := net.InterfaceByName(netIface)
 		checkerr(err)
@@ -69,6 +78,11 @@ func main() {
 		checkerr(err)
 
 		fmt.Println("[+]Done.")
+
+	case randomBool:
+		mac, err := RandomMacAddress()
+		checkerr(err)
+		fmt.Println(mac)
 	}
 
 }
@@ -106,7 +120,10 @@ func RandomMacAddress() (net.HardwareAddr, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	//setting bit
 	buf[0] |= 2
+	buf[0] &= 0xfe
 
 	mac := fmt.Sprintf("%02x:%02x:%02x:%02x:%02x:%02x", buf[0], buf[1], buf[2], buf[3], buf[4], buf[5])
 
