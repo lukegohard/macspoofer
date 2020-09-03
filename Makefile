@@ -7,4 +7,3 @@ move:
 
 uninstall:
 	rm /usr/bin/macspoofer
-	rm -r golang.org/x/sys/unix
