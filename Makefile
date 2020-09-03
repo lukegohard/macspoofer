@@ -3,7 +3,7 @@ build:
 	go build macspoofer.go
 
 move:
-	mv macspoofer /usr/bin
+	cp macspoofer /usr/bin
 
 uninstall:
 	rm /usr/bin/macspoofer
