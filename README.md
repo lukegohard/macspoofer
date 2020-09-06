@@ -38,6 +38,14 @@ sudo ifconfig <device> up
 macspoofer -s -w <device>
 ```
 
+*Printing random mac address:*
+
+```bash
+macspoofer -r 
+```
+
+
+
 ****
 
 **Example:**
