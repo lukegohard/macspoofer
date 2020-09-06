@@ -43,7 +43,7 @@ macspoofer -s -w <device>
 **Example:**
 
 ```bash
-sudo macspoofer -c -w wlan0 -m D9:51:FE:66:FA:AB
+sudo macspoofer -c -w wlan0 -m d9:51:fe:66:fa:ab
 ```
 
 ```bash
