@@ -8,10 +8,6 @@
 make build
 ```
 
-```bash
-sudo make move
-```
-
 ****
 
 **Use:**
@@ -69,5 +65,5 @@ macspoofer -s -w wlan0
 - **-s** ---> print current mac address
 - **-c** ---> change mac address
 - **-w** ---> define device
-- **-m** ---> define new mac address(XX:XX:XX:XX:XX:XX or random)
+- **-m** ---> define new mac address(xx:xx:xx:xx:xx:xx or random)
 - **-r** ---> print a random mac address
